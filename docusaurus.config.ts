@@ -7,7 +7,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 const config: Config = {
   title: 'IronShield',
   tagline: 'Security Documentation',
-  favicon: 'img/favicon.ico',
+  favicon: 'img/IronShield-Icon.svg',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
   future: {
