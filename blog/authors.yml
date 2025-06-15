@@ -1,25 +1,20 @@
-yangshun:
-  name: Yangshun Tay
-  title: Ex-Meta Staff Engineer, Co-founder GreatFrontEnd
-  url: https://linkedin.com/in/yangshun
-  image_url: https://github.com/yangshun.png
+ethan-francolla:
+  name: Ethan Francolla
+  title: CEO, Co-founder
+  image_url: https://github.com/ebosspc.png
   page: true
   socials:
-    x: yangshunz
-    linkedin: yangshun
-    github: yangshun
-    newsletter: https://www.greatfrontend.com
+    x: ethanfrancolla
+    linkedin: ethan-francolla
+    github: ebosspc
 
-slorber:
-  name: Sébastien Lorber
-  title: Docusaurus maintainer
-  url: https://sebastienlorber.com
-  image_url: https://github.com/slorber.png
-  page:
-    # customize the url of the author page at /blog/authors/<permalink>
-    permalink: '/all-sebastien-lorber-articles'
+arnav-shah:
+  name: Arnav Shah
+  title: CTO, Co-founder
+  url: https://arnav.app
+  image_url: https://github.com/aks-24.png
+  page: true
   socials:
-    x: sebastienlorber
-    linkedin: sebastienlorber
-    github: slorber
-    newsletter: https://thisweekinreact.com
+    x: Navar_hash
+    linkedin: arnav-shah-5101b8231
+    github: aks-24

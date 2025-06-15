@@ -1,8 +1,8 @@
 ---
 slug: long-blog-post
 title: Long Blog Post
-authors: yangshun
-tags: [hello, docusaurus]
+authors: ethan-francolla
+tags: [ironshield]
 ---
 
 This is the summary of a very long blog post,
