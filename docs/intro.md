@@ -2,46 +2,67 @@
 sidebar_position: 1
 ---
 
-# Tutorial Intro
+# Getting Started
 
-Let's Test this out wooo discover **Docusaurus in less than 5 minutes**.
+Welcome to **IronShield** - the next-generation security platform designed to protect your applications and APIs from sophisticated threats.
 
-## Getting Started
+## What is IronShield?
 
-Get started by **creating a new site**.
+IronShield is a comprehensive security platform that provides three layers of protection:
 
-Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**.
+- **🛡️ Edge Protection** - Blocks attacks at the network perimeter
+- **🧠 Core Intelligence** - Advanced bot detection and behavioral analysis  
+- **🔌 API Security** - Comprehensive API protection and rate limiting
 
-### What you'll need
+## Quick Start
 
-- [Node.js](https://nodejs.org/en/download/) version 18.0 or above:
-  - When installing Node.js, you are recommended to check all checkboxes related to dependencies.
+Choose your deployment option to get started with IronShield:
 
-## Generate a new site
+### Cloud Deployment
 
-Generate a new Docusaurus site using the **classic template**.
+The fastest way to get started is with our cloud-hosted solution:
 
-The classic template will automatically be added to your project after you run the command:
+1. **Sign up** for an IronShield account at [ironshield.cloud](https://ironshield.cloud)
+2. **Configure** your domain and DNS settings
+3. **Deploy** protection rules through our dashboard
+4. **Monitor** your traffic and security events
 
-```bash
-npm init docusaurus@latest my-website classic
-```
+### Self-Hosted Deployment
 
-You can type this command into Command Prompt, Powershell, Terminal, or any other integrated terminal of your code editor.
-
-The command also installs all necessary dependencies you need to run Docusaurus.
-
-## Start your site
-
-Run the development server:
+For full control over your security infrastructure:
 
 ```bash
-cd my-website
-npm run start
+# Quick deployment with Docker
+docker run -d \
+  --name ironshield \
+  -p 80:80 -p 443:443 \
+  -e IRONSHIELD_DOMAIN=yourdomain.com \
+  -e IRONSHIELD_API_KEY=your-api-key \
+  ironshield/platform:latest
 ```
 
-The `cd` command changes the directory you're working with. In order to work with your newly created Docusaurus site, you'll need to navigate the terminal there.
+See our [Self-Hosting Guide](/docs/self-hosting) for detailed deployment instructions.
 
-The `npm run start` command builds your website locally and serves it through a development server, ready for you to view at http://localhost:3000/.
+## Next Steps
 
-Open `docs/intro.md` (this page) and edit some lines: the site **reloads automatically** and displays your changes.
+### Explore Our Platforms
+
+Learn about each layer of IronShield protection:
+
+- 📖 [**Edge Platform**](/docs/platforms/edge) - Network perimeter protection
+- 📖 [**Core Platform**](/docs/platforms/core) - Bot detection and behavioral analysis
+- 📖 [**API Platform**](/docs/platforms/api) - API security and rate limiting
+
+### Deploy Self-Hosted
+
+Ready to deploy on your own infrastructure?
+
+- 🚀 [**Self-Hosting Guide**](/docs/self-hosting) - Complete deployment guide
+
+### Get Support
+
+Need help getting started?
+
+- 💬 [Community Discord](https://discord.gg/ironshield)
+- 📧 [Technical Support](mailto:support@ironshield.cloud)
+- 📖 [Knowledge Base](https://help.ironshield.cloud)
