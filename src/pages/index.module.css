@@ -34,3 +34,37 @@
 .heroBanner .hero__subtitle {
   color: var(--ifm-color-content-secondary);
 }
+
+/* Make button text black all the time - both light and dark mode */
+.heroBanner .button {
+  color: #000 !important;
+}
+
+.heroBanner .button:hover {
+  color: #000 !important;
+}
+
+.heroBanner .button:focus {
+  color: #000 !important;
+}
+
+.heroBanner .button:active {
+  color: #000 !important;
+}
+
+/* Ensure it works in dark mode specifically */
+[data-theme='dark'] .heroBanner .button {
+  color: #000 !important;
+}
+
+[data-theme='dark'] .heroBanner .button:hover {
+  color: #000 !important;
+}
+
+[data-theme='dark'] .heroBanner .button:focus {
+  color: #000 !important;
+}
+
+[data-theme='dark'] .heroBanner .button:active {
+  color: #000 !important;
+}

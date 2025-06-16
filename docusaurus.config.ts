@@ -72,6 +72,11 @@ const config: Config = {
   themeConfig: {
     // Replace with your project's social card
     image: 'img/docusaurus-social-card.jpg',
+    colorMode: {
+      defaultMode: 'dark',
+      disableSwitch: false,
+      respectPrefersColorScheme: false,
+    },
     navbar: {
       title: '',
       logo: {
@@ -90,11 +95,17 @@ const config: Config = {
           label: 'Getting Started',
         },
         {
-          to: '/docs/self-hosting',
+          to: '/',
           position: 'left',
-          label: 'Self Hosting',
+          label: 'Docs Home',
+          activeBaseRegex: '^/$',
         },
-        {to: '/blog', label: 'Blog', position: 'left'},
+        {to: '/blog', label: 'Blog', position: 'right'},
+        {
+          to: '/docs/self-hosting',
+          position: 'right',
+          label: 'Self-Hosting',
+        },
         {
           href: 'https://github.com/IronShield-Tech/ironshield-docs',
           position: 'right',
@@ -114,7 +125,7 @@ const config: Config = {
               to: '/docs/intro',
             },
             {
-              label: 'Self Hosting',
+              label: 'Self-Hosting',
               to: '/docs/self-hosting',
             },
           ],
