@@ -8,6 +8,8 @@
   text-align: center;
   position: relative;
   overflow: hidden;
+  background: var(--ifm-background-color);
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
 }
 
 @media screen and (max-width: 996px) {
@@ -22,4 +24,13 @@
   justify-content: center;
   gap: 1rem;
   flex-wrap: wrap;
+}
+
+/* Ensure hero text adapts to light/dark mode */
+.heroBanner .hero__title {
+  color: var(--ifm-heading-color);
+}
+
+.heroBanner .hero__subtitle {
+  color: var(--ifm-color-content-secondary);
 }

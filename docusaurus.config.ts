@@ -87,7 +87,12 @@ const config: Config = {
           type: 'docSidebar',
           sidebarId: 'tutorialSidebar',
           position: 'left',
-          label: 'Tutorial',
+          label: 'Getting Started',
+        },
+        {
+          to: '/docs/self-hosting',
+          position: 'left',
+          label: 'Self Hosting',
         },
         {to: '/blog', label: 'Blog', position: 'left'},
         {
@@ -105,8 +110,12 @@ const config: Config = {
           title: 'Docs',
           items: [
             {
-              label: 'Get Started',
+              label: 'Getting Started',
               to: '/docs/intro',
+            },
+            {
+              label: 'Self Hosting',
+              to: '/docs/self-hosting',
             },
           ],
         },
@@ -141,7 +150,7 @@ const config: Config = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} IronShield Technologies, Inc.`,
+      copyright: `Copyright © ${new Date().getFullYear()} IronShield Technologies, Inc. Built With Docusaurus.`,
     },
     prism: {
       theme: prismThemes.github,
