@@ -33,7 +33,7 @@ function HomepageHeader() {
           </Link>
         </div>
         <p className={styles.enterpriseDescription}>
-          Enterprise-Grade Edge-Native L7 DDoS & Scraper Firewall with Stateless Bot Fingerprinting and Adaptive Proof-of-Work Challenges
+          Enterprise-Grade Edge-Native Scraping & L7 DDoS Firewall. Built on Adaptive Proof of Work Challenges and Stateless Bot Fingerprinting.
         </p>
       </div>
     </header>
@@ -44,7 +44,7 @@ export default function Home(): ReactNode {
   const {siteConfig} = useDocusaurusContext();
   return (
     <Layout
-      title={`Welcome to ${siteConfig.title}`}
+      title={`Documentation`}
       description="IronShield Security Documentation">
       <HomepageHeader />
       <main>

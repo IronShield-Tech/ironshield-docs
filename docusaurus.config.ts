@@ -95,11 +95,10 @@ const config: Config = {
           activeBaseRegex: '^/$',
         },
         {
-          type: 'docSidebar',
-          sidebarId: 'tutorialSidebar',
+          to: '/docs/intro',
           position: 'left',
           label: 'Getting Started',
-          activeBaseRegex: '^/docs/(?!self-hosting)',
+          activeBaseRegex: '^/docs/intro$',
         },
         {to: '/blog', label: 'Blog', position: 'right'},
         {

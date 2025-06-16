@@ -1,0 +1,11 @@
+{
+  "label": "Platforms",
+  "position": 3,
+  "link": {
+    "type": "generated-index",
+    "title": "IronShield Platforms",
+    "description": "Comprehensive documentation for IronShield's three core security platforms: Edge, Core, and API protection.",
+    "slug": "/platforms"
+  },
+  "collapsed": false
+} 
