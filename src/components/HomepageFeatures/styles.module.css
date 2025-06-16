@@ -1,11 +1,48 @@
-.features {
+.platforms {
   display: flex;
   align-items: center;
-  padding: 2rem 0;
+  padding: 4rem 0;
   width: 100%;
 }
 
-.featureSvg {
-  height: 200px;
-  width: 200px;
+.platformCard {
+  padding: 2rem;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 12px;
+  height: 100%;
+  transition: all 0.2s ease;
+  background: var(--ifm-background-color);
+}
+
+.platformCard:hover {
+  border-color: var(--ifm-color-primary);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.platformNumber {
+  font-size: 0.9rem;
+  color: var(--ifm-color-primary);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.platformTitle {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: var(--ifm-heading-color);
+}
+
+.platformDescription {
+  color: var(--ifm-color-content-secondary);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
+}
+
+/* Ensure cards have equal height */
+.platformCard {
+  display: flex;
+  flex-direction: column;
 }

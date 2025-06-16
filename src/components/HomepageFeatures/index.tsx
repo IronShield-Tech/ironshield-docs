@@ -3,54 +3,63 @@ import clsx from 'clsx';
 import Heading from '@theme/Heading';
 import styles from './styles.module.css';
 
-type FeatureItem = {
+import Link from '@docusaurus/Link';
+
+type PlatformItem = {
   title: string;
-  Svg: React.ComponentType<React.ComponentProps<'svg'>>;
+  number: string;
   description: ReactNode;
+  docLink: string;
 };
 
-const FeatureList: FeatureItem[] = [
+const PlatformList: PlatformItem[] = [
   {
-    title: 'Easy to Use',
-    Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
+    title: 'Edge',
+    number: '01',
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        Blocks AI scrapers and DDoS attacks at the perimeter before they reach your servers. 
+        Our edge protection prevents triggering costly auto-scaling bills on popular cloud and serverless platforms.
       </>
     ),
+    docLink: '/docs/intro',
   },
   {
-    title: 'Focus on What Matters',
-    Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
+    title: 'Core',
+    number: '02',
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+        Adaptive proof of work challenges and privacy-preserving bot detection engine let real people in 
+        while keeping bots and data thieves out. You choose exactly who belongs on your site, without harming SEO.
       </>
     ),
+    docLink: '/docs/intro',
   },
   {
-    title: 'Powered by React',
-    Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
+    title: 'API',
+    number: '03',
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        Protects every endpoint without needing custom middleware. Our rate limiting, request validation, 
+        and abuse filtering keeps your site fast and your cloud bills low. Drop-in replacements for traditional API abuse protection available.
       </>
     ),
+    docLink: '/docs/intro',
   },
 ];
 
-function Feature({title, Svg, description}: FeatureItem) {
+function Platform({title, number, description, docLink}: PlatformItem) {
   return (
     <div className={clsx('col col--4')}>
-      <div className="text--center">
-        <Svg className={styles.featureSvg} role="img" />
-      </div>
-      <div className="text--center padding-horiz--md">
-        <Heading as="h3">{title}</Heading>
-        <p>{description}</p>
+      <div className={styles.platformCard}>
+        <div className={styles.platformNumber}>/{number}</div>
+        <Heading as="h3" className={styles.platformTitle}>{title}</Heading>
+        <p className={styles.platformDescription}>{description}</p>
+        <Link
+          className="button button--primary"
+          to={docLink}>
+          Learn More →
+        </Link>
       </div>
     </div>
   );
@@ -58,11 +67,14 @@ function Feature({title, Svg, description}: FeatureItem) {
 
 export default function HomepageFeatures(): ReactNode {
   return (
-    <section className={styles.features}>
+    <section className={styles.platforms}>
       <div className="container">
+        <div className="text--center margin-bottom--xl">
+          <Heading as="h2">Our Platforms</Heading>
+        </div>
         <div className="row">
-          {FeatureList.map((props, idx) => (
-            <Feature key={idx} {...props} />
+          {PlatformList.map((props, idx) => (
+            <Platform key={idx} {...props} />
           ))}
         </div>
       </div>

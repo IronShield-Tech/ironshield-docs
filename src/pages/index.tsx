@@ -21,7 +21,12 @@ function HomepageHeader() {
           <Link
             className="button button--secondary button--lg"
             to="/docs/intro">
-            Install and Configure in 5 minutes
+            Get Started in 5 Minutes ⏱️
+          </Link>
+          <Link
+            className="button button--outline button--secondary button--lg"
+            to="/docs/intro">
+            Self-Hosting Guide 🚀
           </Link>
         </div>
       </div>
