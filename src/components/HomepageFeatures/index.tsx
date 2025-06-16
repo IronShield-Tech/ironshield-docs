@@ -22,7 +22,7 @@ const PlatformList: PlatformItem[] = [
         Our edge protection prevents triggering costly auto-scaling bills on popular cloud and serverless platforms.
       </>
     ),
-    docLink: '/docs/intro',
+    docLink: '/docs/platforms/edge',
   },
   {
     title: 'Core',
@@ -33,7 +33,7 @@ const PlatformList: PlatformItem[] = [
         while keeping bots and data thieves out. You choose exactly who belongs on your site, without harming SEO.
       </>
     ),
-    docLink: '/docs/intro',
+    docLink: '/docs/platforms/core',
   },
   {
     title: 'API',
@@ -44,7 +44,7 @@ const PlatformList: PlatformItem[] = [
         and abuse filtering keeps your site fast and your cloud bills low. Drop-in replacements for traditional API abuse protection available.
       </>
     ),
-    docLink: '/docs/intro',
+    docLink: '/docs/platforms/api',
   },
 ];
 
