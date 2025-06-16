@@ -5,6 +5,12 @@
   width: 100%;
 }
 
+.platformsHeading {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+}
+
 .platformCard {
   padding: 2rem;
   border: 1px solid var(--ifm-color-emphasis-200);
@@ -28,7 +34,7 @@
 }
 
 .platformTitle {
-  font-size: 2rem;
+  font-size: 2.5rem;
   font-weight: bold;
   margin-bottom: 1rem;
   color: var(--ifm-heading-color);

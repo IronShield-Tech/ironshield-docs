@@ -12,6 +12,14 @@
   border-bottom: 1px solid var(--ifm-color-emphasis-200);
 }
 
+/* Override CSS variables for light mode only */
+html[data-theme='light'] .heroBanner,
+body[data-theme='light'] .heroBanner {
+  --ifm-heading-color: #000;
+  --ifm-color-content: #000;
+  --ifm-color-content-secondary: #000;
+}
+
 @media screen and (max-width: 996px) {
   .heroBanner {
     padding: 2rem;
@@ -24,47 +32,125 @@
   justify-content: center;
   gap: 1rem;
   flex-wrap: wrap;
+  margin-bottom: 2rem;
 }
 
-/* Ensure hero text adapts to light/dark mode */
-.heroBanner .hero__title {
-  color: var(--ifm-heading-color);
-}
-
-.heroBanner .hero__subtitle {
+.enterpriseDescription {
+  max-width: 600px;
+  margin: 0 auto;
+  font-size: 1.1rem;
+  line-height: 1.5;
   color: var(--ifm-color-content-secondary);
+  text-align: center;
+  opacity: 0.8;
 }
 
-/* Make button text black all the time - both light and dark mode */
-.heroBanner .button {
+/* Make enterprise description darker in light mode */
+html[data-theme='light'] .enterpriseDescription,
+body[data-theme='light'] .enterpriseDescription,
+[data-theme='light'] .enterpriseDescription {
+  color: #666 !important;
+}
+
+/* Force black text ONLY in light mode and default (no theme) */
+html:not([data-theme='dark']) .heroBanner .hero__title,
+body:not([data-theme='dark']) .heroBanner .hero__title,
+html[data-theme='light'] .heroBanner .hero__title,
+body[data-theme='light'] .heroBanner .hero__title,
+[data-theme='light'] .heroBanner .hero__title {
   color: #000 !important;
 }
 
-.heroBanner .button:hover {
+html:not([data-theme='dark']) .heroBanner .hero__subtitle,
+body:not([data-theme='dark']) .heroBanner .hero__subtitle,
+html[data-theme='light'] .heroBanner .hero__subtitle,
+body[data-theme='light'] .heroBanner .hero__subtitle,
+[data-theme='light'] .heroBanner .hero__subtitle {
   color: #000 !important;
 }
 
-.heroBanner .button:focus {
+/* Ensure dark mode gets proper colors */
+html[data-theme='dark'] .heroBanner .hero__title,
+body[data-theme='dark'] .heroBanner .hero__title,
+[data-theme='dark'] .heroBanner .hero__title {
+  color: var(--ifm-heading-color) !important;
+}
+
+html[data-theme='dark'] .heroBanner .hero__subtitle,
+body[data-theme='dark'] .heroBanner .hero__subtitle,
+[data-theme='dark'] .heroBanner .hero__subtitle {
+  color: var(--ifm-color-content-secondary) !important;
+}
+
+/* Hero icon styling */
+.heroIcon {
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+.heroIconImage {
+  height: 80px;
+  width: auto;
+}
+
+/* Force button text to black with maximum specificity - targeting Docusaurus classes */
+.heroBanner .buttons .button.button--primary,
+.heroBanner .buttons .button.button--primary:link,
+.heroBanner .buttons .button.button--primary:visited,
+.heroBanner .buttons a.button.button--primary,
+.heroBanner .buttons a.button.button--primary:link,
+.heroBanner .buttons a.button.button--primary:visited,
+html .heroBanner .buttons .button,
+body .heroBanner .buttons .button,
+html .heroBanner .buttons a.button,
+body .heroBanner .buttons a.button {
   color: #000 !important;
 }
 
-.heroBanner .button:active {
+.heroBanner .buttons .button.button--primary:hover,
+.heroBanner .buttons .button.button--primary:focus,
+.heroBanner .buttons .button.button--primary:active,
+.heroBanner .buttons a.button.button--primary:hover,
+.heroBanner .buttons a.button.button--primary:focus,
+.heroBanner .buttons a.button.button--primary:active,
+html .heroBanner .buttons .button:hover,
+html .heroBanner .buttons .button:focus,
+html .heroBanner .buttons .button:active,
+body .heroBanner .buttons .button:hover,
+body .heroBanner .buttons .button:focus,
+body .heroBanner .buttons .button:active {
   color: #000 !important;
 }
 
-/* Ensure it works in dark mode specifically */
-[data-theme='dark'] .heroBanner .button {
+/* Extra specificity for both themes */
+html[data-theme='light'] .heroBanner .buttons .button,
+html[data-theme='light'] .heroBanner .buttons a.button,
+body[data-theme='light'] .heroBanner .buttons .button,
+body[data-theme='light'] .heroBanner .buttons a.button,
+[data-theme='light'] .heroBanner .buttons .button.button--primary,
+[data-theme='light'] .heroBanner .buttons a.button.button--primary,
+html[data-theme='dark'] .heroBanner .buttons .button,
+html[data-theme='dark'] .heroBanner .buttons a.button,
+body[data-theme='dark'] .heroBanner .buttons .button,
+body[data-theme='dark'] .heroBanner .buttons a.button,
+[data-theme='dark'] .heroBanner .buttons .button.button--primary,
+[data-theme='dark'] .heroBanner .buttons a.button.button--primary {
   color: #000 !important;
 }
 
-[data-theme='dark'] .heroBanner .button:hover {
-  color: #000 !important;
-}
-
-[data-theme='dark'] .heroBanner .button:focus {
-  color: #000 !important;
-}
-
-[data-theme='dark'] .heroBanner .button:active {
+/* All interactive states */
+html[data-theme='light'] .heroBanner .buttons .button:hover,
+html[data-theme='light'] .heroBanner .buttons .button:focus,
+html[data-theme='light'] .heroBanner .buttons .button:active,
+body[data-theme='light'] .heroBanner .buttons .button:hover,
+body[data-theme='light'] .heroBanner .buttons .button:focus,
+body[data-theme='light'] .heroBanner .buttons .button:active,
+html[data-theme='dark'] .heroBanner .buttons .button:hover,
+html[data-theme='dark'] .heroBanner .buttons .button:focus,
+html[data-theme='dark'] .heroBanner .buttons .button:active,
+body[data-theme='dark'] .heroBanner .buttons .button:hover,
+body[data-theme='dark'] .heroBanner .buttons .button:focus,
+body[data-theme='dark'] .heroBanner .buttons .button:active {
   color: #000 !important;
 }

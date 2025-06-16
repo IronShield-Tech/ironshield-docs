@@ -69,8 +69,8 @@ export default function HomepageFeatures(): ReactNode {
   return (
     <section className={styles.platforms}>
       <div className="container">
-        <div className="text--center margin-bottom--xl">
-          <Heading as="h2">Our Platforms</Heading>
+        <div className="text--center margin-bottom--lg">
+          <Heading as="h2" className={styles.platformsHeading}>Our Platforms</Heading>
         </div>
         <div className="row">
           {PlatformList.map((props, idx) => (

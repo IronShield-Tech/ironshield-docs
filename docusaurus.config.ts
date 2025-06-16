@@ -6,7 +6,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
   title: 'IronShield',
-  tagline: 'Security Documentation',
+  tagline: 'Tutorial & Docs',
   favicon: 'img/IronShield-Icon.svg',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
@@ -89,16 +89,17 @@ const config: Config = {
       },
       items: [
         {
-          type: 'docSidebar',
-          sidebarId: 'tutorialSidebar',
-          position: 'left',
-          label: 'Getting Started',
-        },
-        {
           to: '/',
           position: 'left',
           label: 'Docs Home',
           activeBaseRegex: '^/$',
+        },
+        {
+          type: 'docSidebar',
+          sidebarId: 'tutorialSidebar',
+          position: 'left',
+          label: 'Getting Started',
+          activeBaseRegex: '^/docs/(?!self-hosting)',
         },
         {to: '/blog', label: 'Blog', position: 'right'},
         {

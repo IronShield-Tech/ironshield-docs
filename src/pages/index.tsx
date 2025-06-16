@@ -13,6 +13,13 @@ function HomepageHeader() {
   return (
     <header className={clsx('hero', styles.heroBanner)}>
       <div className="container">
+        <div className={styles.heroIcon}>
+          <img 
+            src="/img/IronShield-Icon-No-Bkg.svg" 
+            alt="IronShield"
+            className={styles.heroIconImage}
+          />
+        </div>
         <Heading as="h1" className="hero__title">
           {siteConfig.title}
         </Heading>
@@ -20,15 +27,14 @@ function HomepageHeader() {
         <div className={styles.buttons}>
           <Link
             className="button button--primary button--lg"
+            style={{color: '#000'}}
             to="/docs/intro">
-            Get Started in 5 Minutes ⏱️
-          </Link>
-          <Link
-            className="button button--primary button--lg"
-            to="/docs/self-hosting">
-            Self-Hosting Guide 🚀
+            ⏱️ Get Started in 5 Minutes 
           </Link>
         </div>
+        <p className={styles.enterpriseDescription}>
+          Enterprise-Grade Edge-Native L7 DDoS & Scraper Firewall with Stateless Bot Fingerprinting and Adaptive Proof-of-Work Challenges
+        </p>
       </div>
     </header>
   );
