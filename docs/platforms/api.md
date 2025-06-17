@@ -20,7 +20,7 @@ The IronShield API verification system operates through a **cryptographically-se
 
 ## How It Works: Complete Verification Flow
 
-The IronShield verification process involves **eight distinct steps** that create a secure, verifiable chain of trust without requiring ongoing communication between your API and IronShield servers.
+The IronShield verification process involves **eight distinct steps** that create a secure, verifiable chain of trust without requiring ongoing communication between your API and IronShield servers. Included in this diagram are also the custom X-IRONSHIELD http headers parties use to communicate with each other via this protocol.
 
 ```mermaid
 sequenceDiagram
@@ -70,10 +70,10 @@ Before diving into the technical implementation, it's important to understand **
 
 ### What is Proof of Work?
 
-**Proof of Work** is a cryptographic mechanism that requires a client to perform a computationally expensive operation to prove they have expended real computational resources. In IronShield's case:
+**Proof of Work** is a cryptographic mechanism that requires a client to perform a computationally expensive operation to prove they have expended real computational resources, most famously implemented in Bitcoin mining. In IronShield's protcol consists of the following:
 
 - **Challenge**: IronShield provides a mathematical puzzle that requires significant CPU cycles to solve
-- **Solution**: The client must find a specific value (usually called a "nonce") that, when combined with the challenge data, produces a hash with certain properties (like starting with a specific number of zeros)
+- **Solution**: The client must find a specific value (usually called a "nonce") that, when combined with the challenge data, produces a hash with certain properties.
 - **Verification**: Anyone can quickly verify the solution is correct, but finding it initially requires substantial computation
 
 ### Why PoW Stops Bad Actors
