@@ -4,7 +4,7 @@ sidebar_position: 3
 
 # API
 
-IronShield API provides **distributed Proof of Work verification** that allows third-party APIs to verify clients have solved valid computational challenges without requiring direct communication with IronShield servers. This creates a **zero-trust, sandboxed verification system** perfect for extreme threat model applications.
+IronShield API provides **distributed Proof of Work verification** that allows third-party APIs to verify clients have solved valid computational challenges to prove they aren't malicious without requiring direct communication with IronShield servers. This creates a **zero-trust, sandboxed verification system** that is extremely difficult to exploit and can be utilized in threat models that are more extreme, such as servers that only allow inbound network traffic.
 
 ## Overview
 
@@ -12,7 +12,7 @@ The IronShield API verification system operates through a **cryptographically-se
 
 ### Key Features
 
-- **🔐 Cryptographic Verification** - RSA/ECDSA signatures allow offline verification of PoW tokens
+- **🔐 Offline Cryptographic Verification** - ECDSA signatures allow offline verification and authentication of PoW tokens
 - **⚡ Zero-Latency Verification** - No need to contact IronShield servers for token validation  
 - **🛡️ Sandboxed Security** - Verification works in completely isolated environments
 - **🌐 Universal Compatibility** - Works with any HTTP-based API or service
@@ -20,7 +20,7 @@ The IronShield API verification system operates through a **cryptographically-se
 
 ## How It Works: Complete Verification Flow
 
-The IronShield verification process involves **six distinct steps** that create a secure, verifiable chain of trust without requiring ongoing communication between your API and IronShield servers.
+The IronShield verification process involves **seven distinct steps** that create a secure, verifiable chain of trust without requiring ongoing communication between your API and IronShield servers.
 
 ```mermaid
 sequenceDiagram
@@ -28,17 +28,36 @@ sequenceDiagram
     participant IronShield as IronShield Servers
     participant API as Third-Party API
     
-    Note over Client,API: Step 1-4: Challenge & Proof Generation
-    Client->>IronShield: 1. Request Challenge (X-IRONSHIELD-CHALLENGE-REQUEST)
-    IronShield->>Client: 2. Issue Challenge (X-IRONSHIELD-CHALLENGE)
-    Note over Client: 3. Client solves PoW challenge locally
-    Client->>IronShield: 4. Submit Solution (X-IRONSHIELD-CHALLENGE-RESPONSE)
-    IronShield->>Client: 5. Return Approval Token (X-IRONSHIELD-TOKEN)
+        Client->>IronShield: 1. Client Requests Challenge
+    Note over Client,IronShield: X-IRONSHIELD-CHALLENGE-REQUEST
     
-    Note over Client,API: Step 6: Offline Verification
-    Client->>API: 6. API Request + Token (X-IRONSHIELD-TOKEN)
-    Note over API: Cryptographically verify token<br/>without contacting IronShield
-    API->>Client: Response (if token valid)
+    
+    IronShield->>Client: 2. IronShield Servers Issue Challenge
+    Note over Client,IronShield: X-IRONSHIELD-CHALLENGE
+    
+    
+    Note over Client: 3. Client Solves PoW challenge<br/>(CPU computation)
+    
+    
+    Client->>IronShield: 4. Client Submits Solution
+    Note over Client,IronShield: X-IRONSHIELD-CHALLENGE-RESPONSE
+    
+    
+    Note over IronShield: 5. IronShield Servers Verifies Solution<br/>(hash verification is O(1) in time)
+    
+    
+    IronShield->>Client: 6. IronShield Servers Return Signed Approval Token
+    Note over Client,IronShield: X-IRONSHIELD-TOKEN
+    
+    
+    Client->>API: 7. Client submits API Request Appended With Token
+    Note over Client,API: Include X-IRONSHIELD-TOKEN
+    
+    
+    Note over API: Third Party API Verifies Token Offline<br/>(no IronShield contact needed)
+    
+    
+    API->>Client: API Returns Response to Client
 ```
 
 :::tip Why This Matters
