@@ -419,4 +419,4 @@ Need help with Core platform deployment?
 
 - [Configure Edge Platform](/docs/platforms/edge)
 - [Set Up API Protection](/docs/platforms/api)
-- [Advanced ML Configuration](/docs/tutorial-extras/manage-docs-versions) 
+- [Self-Hosting Guide](/docs/self-hosting) 

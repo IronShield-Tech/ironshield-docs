@@ -264,4 +264,4 @@ Need help with Edge platform deployment?
 
 - [Configure Core Platform](/docs/platforms/core)
 - [Set Up API Protection](/docs/platforms/api)
-- [Advanced Edge Deployment](/docs/tutorial-extras/manage-docs-versions) 
+- [Self-Hosting Guide](/docs/self-hosting) 
