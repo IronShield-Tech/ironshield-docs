@@ -20,7 +20,7 @@ The IronShield API verification system operates through a **cryptographically-se
 
 ## How It Works: Complete Verification Flow
 
-The IronShield verification process involves **seven distinct steps** that create a secure, verifiable chain of trust without requiring ongoing communication between your API and IronShield servers.
+The IronShield verification process involves **eight distinct steps** that create a secure, verifiable chain of trust without requiring ongoing communication between your API and IronShield servers.
 
 ```mermaid
 sequenceDiagram
@@ -50,14 +50,14 @@ sequenceDiagram
     Note over Client,IronShield: X-IRONSHIELD-TOKEN
     
     
-    Client->>API: 7. Client submits API Request Appended With Token
-    Note over Client,API: Include X-IRONSHIELD-TOKEN
+    Client->>API: 7. Token Forwarded In API Request
+    Note over Client,API: X-IRONSHIELD-TOKEN
     
     
     Note over API: Third Party API Verifies Token Offline<br/>(no IronShield contact needed)
     
     
-    API->>Client: API Returns Response to Client
+    API->>Client: 8. API Returns Response to Client
 ```
 
 :::tip Why This Matters
