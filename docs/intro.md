@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # Getting Started
 
-Welcome to **IronShield** - the next-generation security platform designed to protect your applications and APIs from sophisticated threats.
+Welcome to **IronShield** - an advanced open source and self-hostable security platform designed to protect your applications and APIs from sophisticated threats.
 
 ## What is IronShield?
 
@@ -18,30 +18,16 @@ IronShield is a comprehensive security platform that provides three layers of pr
 
 Choose your deployment option to get started with IronShield:
 
-### Cloud Deployment
+### Automated Cloud Deployment
 
-The fastest way to get started is with our cloud-hosted solution:
+The fastest way to get started is with our cloud-hosted solution via our automated **1-click onboarding**:
 
 1. **Sign up** for an IronShield account at [ironshield.cloud](https://ironshield.cloud)
-2. **Configure** your domain and DNS settings
-3. **Deploy** protection rules through our dashboard
-4. **Monitor** your traffic and security events
+2. The onboarding wizard will automatically configure cofigure your domain and DNS settings
 
 ### Self-Hosted Deployment
 
-For full control over your security infrastructure:
-
-```bash
-# Quick deployment with Docker
-docker run -d \
-  --name ironshield \
-  -p 80:80 -p 443:443 \
-  -e IRONSHIELD_DOMAIN=yourdomain.com \
-  -e IRONSHIELD_API_KEY=your-api-key \
-  ironshield/platform:latest
-```
-
-See our [Self-Hosting Guide](/docs/self-hosting) for detailed deployment instructions.
+For full control over your security infrastructure see our [Self-Hosting Guide](/docs/self-hosting) for detailed deployment instructions.
 
 ## Next Steps
 
