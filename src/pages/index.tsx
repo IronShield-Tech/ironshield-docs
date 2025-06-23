@@ -15,7 +15,7 @@ function HomepageHeader() {
       <div className="container">
         <div className={styles.heroIcon}>
           <img 
-            src="/img/IronShield-Icon-No-Bkg.svg" 
+            src="/img/IronShield-Icon-No-Bkg.svg?v=2" 
             alt="IronShield"
             className={styles.heroIconImage}
           />

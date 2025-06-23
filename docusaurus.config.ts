@@ -110,8 +110,8 @@ const config: Config = {
       title: '',
       logo: {
         alt: 'IronShield',
-        src: 'img/IronShield-Banner-No-Bkg-Black.svg', // Dark logo for light mode
-        srcDark: 'img/IronShield-Banner-No-Bkg-White.svg', // Light logo for dark mode
+        src: 'img/IronShield-Banner-No-Bkg-Black.svg?v=2', // Dark logo for light mode
+        srcDark: 'img/IronShield-Banner-No-Bkg-White.svg?v=2', // Light logo for dark mode
         href: 'https://ironshield.cloud',
         target: '_blank',
         height: 40,
