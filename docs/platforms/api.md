@@ -63,19 +63,22 @@ sequenceDiagram
 This architecture means your API can verify legitimate users **without any dependency on IronShield's infrastructure**. Even if IronShield servers are completely unreachable, your API can still verify tokens and serve legitimate traffic.
 :::
 
-
-
 Now let's walk through each step of the verification process in detail, including the exact HTTP headers used and what happens at each stage.
 
 ### Step 1: Client Requests Challenge
 
-When an unknown client wants to access a third-party API protected by IronShield, they first need to obtain a computational challenge. The client sends a request to IronShield servers with a specific header.
+When an unknown client wants to access a third-party API protected by IronShield, 
+they first need to obtain a computational challenge. 
+The client sends a HTTP request to IronShield servers with a specific Base64URL'd header.
 
-**HTTP Header Used:** `X-IRONSHIELD-CHALLENGE-REQUEST`
+:::info Base64URL Encoding
+All IronShield headers use **Base64URL encoding** (not standard Base64) to avoid browser-unsafe characters like `+`, `/`, and `=`. 
+This ensures headers work seamlessly across all HTTP implementations and can be easily represented, copied, and modified since they are just one long blob of text.
+:::
+
+**Example HTTP Header:** `X-IRONSHIELD-CHALLENGE-REQUEST`
 
 ```http
-GET /challenge-endpoint HTTP/1.1
-Host: challenge.ironshield.cloud
 X-IRONSHIELD-CHALLENGE-REQUEST: eyJ0eXBlIjoiY2hhbGxlbmdlX3JlcXVlc3QiLCJ0YXJnZXRfYXBpIjoiYXBpLmV4YW1wbGUuY29tIiwidGltZXN0YW1wIjoxNzA5NTU5NjAwfQ==
 ```
 
@@ -92,9 +95,7 @@ X-IRONSHIELD-CHALLENGE-REQUEST: eyJ0eXBlIjoiY2hhbGxlbmdlX3JlcXVlc3QiLCJ0YXJnZXRf
 }
 ```
 
-:::info Base64URL Encoding
-All IronShield headers use **Base64URL encoding** (not standard Base64) to avoid browser-unsafe characters like `+`, `/`, and `=`. This ensures headers work seamlessly across all HTTP implementations and proxies.
-:::
+
 
 ### Step 2: IronShield Issues Challenge
 
