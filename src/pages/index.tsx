@@ -44,8 +44,8 @@ export default function Home(): ReactNode {
   const {siteConfig} = useDocusaurusContext();
   return (
     <Layout
-      title={`Documentation`}
-      description="IronShield Security Documentation">
+      title={`Docs`}
+      description="IronShield Documentation & Guides">
       <HomepageHeader />
       <main>
         <HomepageFeatures />
