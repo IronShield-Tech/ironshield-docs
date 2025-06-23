@@ -36,6 +36,27 @@ graph TD
 
 ## Getting Started
 
+
+## Understanding Proof of Work Verification
+
+Before diving into the technical implementation, it's important to understand **what Proof of Work (PoW) verification accomplishes** and why it's effective against automated attacks.
+
+### What is Proof of Work?
+
+**Proof of Work** is a cryptographic mechanism that requires a client to perform a computationally expensive operation to prove they have expended real computational resources, most famously implemented in Bitcoin mining. IronShield's similar protocol consists of the following:
+
+- **Challenge**: IronShield provides a mathematical puzzle that requires significant CPU cycles to solve. The "work" is the energy expended a device needs to solve the challenge.
+- **Solution**: The client must find a specific value (usually called a "nonce") that, when combined with the provided challenge data, produces a cryptographic hash with certain properties.
+- **Verification**: Any independent party can easily and quickly verify the solution is correct without having to recompute the soluition from scratch, but can be certain that the solver initially found it utilizing substantial computational work.
+
+
+
+### Why PoW Stops Bad Actors
+The problem with traditional automated attacks (bots, scrapers, DDoS) is that anybody with 20 minutes of effort and 50 dollars can bring a multimillion dollar system offline because spamming endpoints is incredibly cheap to do yet extremly costly to defend againt.
+
+IronShield Core turns scraping and DDoS protection from a networking problem to an economic one. Attacks become economically unfeasible when each request requires significant computational cost. Malicious actors can't easily scale attacks because each request demands real CPU time and energy consumption. On the other hand, the "cost" to real users solving occasional challenges is imperceptible since they only have to solve one challenge and can use all of their computer's hardware to do so for free.
+
+
 ### Prerequisites
 
 - **Minimum Requirements**: 8GB RAM, 4 CPU cores

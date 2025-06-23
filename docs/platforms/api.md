@@ -8,19 +8,18 @@ IronShield API provides **distributed Proof of Work verification** that allows t
 
 ## Overview
 
-The IronShield API verification system operates through a **cryptographically-secured token exchange process** that enables any third-party service to independently verify that a client has completed legitimate computational work (Proof of Work). This system is designed to be completely **offline-verifiable**, meaning verification can happen in sandboxed environments without any outbound network traffic to IronShield.
+The IronShield API verification system operates through a **cryptographically-secured token exchange process** that enables any third-party service to independently verify that a client has completed legitimate computational work (Proof of Work). This system is designed to be completely **offline-verifiable**, meaning verification can happen in sandboxed environments without any outbound network traffic to IronShield. For more detailed information on the PoW system, please see the [Core Platform Documentation](/docs/platforms/core).
 
 ### Key Features
-
-- **🔐 Offline Cryptographic Verification** - ECDSA signatures allow offline verification and authentication of PoW tokens
-- **⚡ Zero-Latency Verification** - No need to contact IronShield servers for token validation  
-- **🛡️ Sandboxed Security** - Verification works in completely isolated environments
 - **🌐 Universal Compatibility** - Works with any HTTP-based API or service
 - **📦 Simple Integration** - Just verify HTTP headers - no complex SDKs required
+- **⚡ Zero-Latency Verification** - No need to contact IronShield servers for token validation
+- **🛡️ Sandboxed Security** - Verification works in completely isolated environments
+- **🔐 Offline Cryptographic Verification** - ECDSA signatures allow offline verification and authentication of PoW tokens
+
 
 ## How It Works: Complete Verification Flow
-
-The IronShield verification process involves **eight distinct steps** that create a secure, verifiable chain of trust without requiring ongoing communication between your API and IronShield servers. Included in this diagram are also the custom X-IRONSHIELD http headers parties use to communicate with each other via this protocol.
+The IronShield verification process involves **eight distinct steps** that create a secure, verifiable chain of trust without requiring ongoing communication between your API and IronShield servers. Included in this diagram are also the custom X-IRONSHIELD HHTP headers parties use to communicate with each other via this protocol.
 
 ```mermaid
 sequenceDiagram
@@ -64,27 +63,7 @@ sequenceDiagram
 This architecture means your API can verify legitimate users **without any dependency on IronShield's infrastructure**. Even if IronShield servers are completely unreachable, your API can still verify tokens and serve legitimate traffic.
 :::
 
-## Understanding Proof of Work Verification
 
-Before diving into the technical implementation, it's important to understand **what Proof of Work (PoW) verification accomplishes** and why it's effective against automated attacks.
-
-### What is Proof of Work?
-
-**Proof of Work** is a cryptographic mechanism that requires a client to perform a computationally expensive operation to prove they have expended real computational resources, most famously implemented in Bitcoin mining. In IronShield's protcol consists of the following:
-
-- **Challenge**: IronShield provides a mathematical puzzle that requires significant CPU cycles to solve
-- **Solution**: The client must find a specific value (usually called a "nonce") that, when combined with the challenge data, produces a hash with certain properties.
-- **Verification**: Anyone can quickly verify the solution is correct, but finding it initially requires substantial computation
-
-### Why PoW Stops Bad Actors
-
-**Economic Barriers**: Automated attacks (bots, scrapers, DDoS) become economically unfeasible when each request requires significant computational cost.
-
-**Resource Limitation**: Attackers can't easily scale attacks because each request demands real CPU time and energy consumption.
-
-**Legitimate User Friendly**: Real users solving occasional challenges is imperceptible, but automated systems making thousands of requests face prohibitive costs.
-
-## Step-by-Step Verification Process
 
 Now let's walk through each step of the verification process in detail, including the exact HTTP headers used and what happens at each stage.
 
