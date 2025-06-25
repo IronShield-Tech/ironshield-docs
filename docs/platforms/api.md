@@ -76,22 +76,17 @@ All IronShield headers use **Base64URL encoding** (not standard Base64) to avoid
 This ensures headers work seamlessly across all HTTP implementations and can be easily represented, copied, and modified since they are just one long blob of text.
 :::
 
-**Example HTTP Header:** `X-IRONSHIELD-CHALLENGE-REQUEST`
+**Example HTTP Header:** `X-IRONSHIELD-REQUEST`
 
 ```http
-X-IRONSHIELD-CHALLENGE-REQUEST: eyJ0eXBlIjoiY2hhbGxlbmdlX3JlcXVlc3QiLCJ0YXJnZXRfYXBpIjoiYXBpLmV4YW1wbGUuY29tIiwidGltZXN0YW1wIjoxNzA5NTU5NjAwfQ==
+X-IRONSHIELD-REQUEST: eyJ0eXBlIjoiY2hhbGxlbmdlX3JlcXVlc3QiLCJ0YXJnZXRfYXBpIjoiYXBpLmV4YW1wbGUuY29tIiwidGltZXN0YW1wIjoxNzA5NTU5NjAwfQ
 ```
 
-**Decoded Header Content (Base64URL decoded):**
+**Example Header Content (Base64URL decoded into JSON):**
 ```json
 {
-  "type": "challenge_request",
-  "target_api": "api.example.com",
-  "timestamp": 1709559600,
-  "client_info": {
-    "user_agent": "MyApp/1.0",
-    "platform": "web"
-  }
+  endpoint: "api.example.com",
+  timestamp: 1709559600,
 }
 ```
 
@@ -101,25 +96,23 @@ X-IRONSHIELD-CHALLENGE-REQUEST: eyJ0eXBlIjoiY2hhbGxlbmdlX3JlcXVlc3QiLCJ0YXJnZXRf
 
 IronShield servers respond with a computational challenge that the client must solve. This challenge includes all the parameters needed for the Proof of Work computation.
 
-**HTTP Header Used:** `X-IRONSHIELD-CHALLENGE`
+**Example HTTP Header:** `X-IRONSHIELD-CHALLENGE`
 
 ```http
-HTTP/1.1 200 OK
-X-IRONSHIELD-CHALLENGE: eyJjaGFsbGVuZ2VfaWQiOiJjaGFsXzE3MDk1NTk2MDBfYWJjZGVmIiwiZGlmZmljdWx0eSI6NSwiaGFzaF90YXJnZXQiOiIwMDAwMCIsInNhbHQiOiJyYW5kb21fc2FsdF8xMjM0NSIsImV4cGlyZXMiOjE3MDk1NjMyMDAsInByb29mX3R5cGUiOiJzaGEyNTYiLCJub25jZV9yYW5nZSI6WzAsMTAwMDAwMDBdLCJ0YXJnZXRfYXBpIjoiYXBpLmV4YW1wbGUuY29tIn0=
+X-IRONSHIELD-CHALLENGE: eyJjaGFsbGVuZ2VfaWQiOiJjaGFsXzE3MDk1NTk2MDBfYWJjZGVmIiwiZGlmZmljdWx0e
 ```
 
-**Decoded Challenge Content:**
+**Example Decoded Header Content:**
 ```json
 {
-  "challenge_id": "chal_1709559600_abcdef",
-  "difficulty": 5,
-  "hash_target": "00000",
-  "salt": "random_salt_12345",
-  "expires": 1709563200,
-  "proof_type": "sha256",
-  "nonce_range": [0, 100000000],
-  "target_api": "api.example.com",
-  "public_key": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA...\n-----END PUBLIC KEY-----"
+  random_nonce: "chal_1709559600_abcdef",
+  created_time: 1750726438000,
+  expiration_time: 1750726468000,
+  website_id: "api.example.com",
+  challenge_param: 12034812319287364129837412,
+  recommended_attempts: 10000000,
+  public_key: "ALF098asdfSgasdasdf8a6asdfk",
+  challenge_signature: "asdf;lasdfoiasdflkasdfAFdasdfg2340SGDafdsgladfg8",
 }
 ```
 
