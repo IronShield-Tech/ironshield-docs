@@ -201,7 +201,6 @@ IronShieldToken {
 - **`challenge_signature`**: Ed25519 signature over the challenge data
 - **`valid_for`**:           The unix milis timestamp of when the token expires
 - **`public_key`**:          Ed25519 public key for signature verification.
-- **`challenge_signature`**: Ed25519 signature over the challenge data.
 - **`auth_signature`**:      Ed25519 signature over token data
 
 :::warning Security Notice
