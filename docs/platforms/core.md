@@ -4,37 +4,11 @@ sidebar_position: 2
 
 # Core 
 
-IronShield Core serves as the **intelligence center** of your security infrastructure, providing advanced bot detection, behavioral analysis, and centralized threat coordination across all protection layers.
+IronShield Core is the intelligence center of IronShield security infrastructure. It generates, verifyies, and authenticates **adaptive proof of work challenges**. It also provides advanced bot detection, behavioral analysis, and fingerprinting.
 
 ## Overview
 
-The Core platform operates as the brain of IronShield's security ecosystem, analyzing patterns across multiple data sources to identify sophisticated threats that traditional rule-based systems miss. It employs machine learning algorithms and behavioral fingerprinting to distinguish between human users and automated attacks.
-
-### Key Features
-
-- **Advanced Bot Detection** - Multi-layered bot identification using behavioral analysis
-- **Stateless Fingerprinting** - Device and browser fingerprinting without persistent storage
-- **Machine Learning Engine** - Adaptive threat detection that improves over time
-- **Behavioral Analysis** - Real-time user behavior profiling and anomaly detection
-- **Threat Intelligence** - Integration with global threat feeds and reputation databases
-
-## Architecture
-
-```mermaid
-graph TD
-    A[Edge Layer] --> B[Core Processing Engine]
-    C[API Layer] --> B
-    B --> D[Bot Detection Module]
-    B --> E[Behavioral Analysis]
-    B --> F[ML Threat Engine]
-    D --> G[Decision Engine]
-    E --> G
-    F --> G
-    G --> H[Protection Response]
-    I[Threat Intelligence] --> F
-```
-
-## Getting Started
+The Core platform functions as the primary gatekeeper in front of protected services. Any incoming request to a protected service must solve a proof-of-work computational challenge described in detail below. After successful completion of the challenge, it forwards the incoming traffic to the protected service. Since IronShield challenges are adaptive, the privacy-preserving fingerprinting engine can serve much more difficult challenges to traffic it sees as malicious, such as automated AI-driven scrapers or DDoS attacks, effectively blocking them.
 
 
 ## Understanding Proof of Work Verification
@@ -46,15 +20,48 @@ Before diving into the technical implementation, it's important to understand **
 **Proof of Work** is a cryptographic mechanism that requires a client to perform a computationally expensive operation to prove they have expended real computational resources, most famously implemented in Bitcoin mining. IronShield's similar protocol consists of the following:
 
 - **Challenge**: IronShield provides a mathematical puzzle that requires significant CPU cycles to solve. The "work" is the energy expended a device needs to solve the challenge.
-- **Solution**: The client must find a specific value (usually called a "nonce") that, when combined with the provided challenge data, produces a cryptographic hash with certain properties.
+- **Solution**: The client must find a specific value (usually called a "nonce") that, when combined with the provided challenge data, produces a cryptographic hash (e.g. SHA-256) with certain properties.
 - **Verification**: Any independent party can easily and quickly verify the solution is correct without having to recompute the soluition from scratch, but can be certain that the solver initially found it utilizing substantial computational work.
 
-
-
 ### Why PoW Stops Bad Actors
-The problem with traditional automated attacks (bots, scrapers, DDoS) is that anybody with 20 minutes of effort and 50 dollars can bring a multimillion dollar system offline because spamming endpoints is incredibly cheap to do yet extremly costly to defend againt.
+The problem with traditional automated attacks (bots, scrapers, DDoS) is that anybody with 20 minutes of effort and 50 dollars can bring a multi-million dollar system offline because spamming endpoints is incredibly cheap to do yet extremly costly to defend againt.
 
-IronShield Core turns scraping and DDoS protection from a networking problem to an economic one. Attacks become economically unfeasible when each request requires significant computational cost. Malicious actors can't easily scale attacks because each request demands real CPU time and energy consumption. On the other hand, the "cost" to real users solving occasional challenges is imperceptible since they only have to solve one challenge and can use all of their computer's hardware to do so for free.
+IronShield Core turns scraping and DDoS protection from a networking problem to an economic one. Attacks become economically unfeasible when each request requires significant computational cost. Malicious actors can't easily scale attacks because each request demands real CPU time and energy consumption to the point where the assymetric cost IronShield creates would make an attack economically infeasible. On the other hand, the "cost" to real users solving occasional challenges is imperceptible since they only have to solve one challenge and can use all of their computer's hardware to do so for free.
+
+## How IronSHield's PoW Functions
+
+### Step 1: Client Decodes a Challenge
+IronShield's protocol primarily communicates with HTTP headers, for more infomration see the [API Platform Documentation](/docs/platforms/api).
+
+**Example Decoded Header Content:**
+```json
+IronShieldChallenge {
+  random_nonce: "55a77bde84950b2a2a525885902a6b13",
+  created_time: 1753923084753,
+  expiration_time: 1753923114753,
+  website_id: "ironshield-edge",
+  challenge_param: "[0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]",
+  recommended_attempts: 10000000,
+  public_key: "[4, 1, 218, 71, 15, 1, 1, 7, 64, 75, 121, 0, 46, 128, 52, 26, 55, 136, 20, 182, 107, 189, 54, 235, 41, 1, 241, 143, 183, 142, 125, 60]",
+  challenge_signature: "[80, 117, 53, 94, 228, 123, 162, 251, 221, 72, 66, 74, 202, 33, 225, 97, 34, 176, 138, 89, 32, 207, 247, 204, 221, 119, 194, 221, 172, 108, 190, 43, 127, 174, 95, 27,41, 160, 180, 20, 102, 152, 129, 222, 35, 79, 219, 106, 243, 86, 28, 99, 70, 151, 200, 101, 153, 98, 149, 167, 142, 139, 229, 5]"
+}
+```
+
+### The Computational Challenge
+To solve an `IronShieldChallenge`, a client must find some `solution` nonce that when concatenated with the `random_nonce`, and the resulting string is hashed with SHA-256, such that the resulting hash represented as a *[u8; 32] little-endian byte array* is  smaller than the `challenge_param` target threshold byte array. The lower the `challenge_param` is, the harder the challenge is. For example, the average probability of finding a SHA-256 hash less than 2^255 represented as a [u8; 32] byte array ([0, 0, 0, ..., 128]) is 50% since there is a 50% chance any random integer chosen between 0 and 2^256 will be less than 2^255. Mathematically, the probability of solving a given challenge is `challenge_param / 2^256`. Therefore, the difficulty, or the expected average number of attempts to solve a challenge, is `2^256 / challenge_param`. 
+
+#### Random Nonce
+The `random_nonce` is a SHA-256 hash of a random number represented as a hex string generated by IronShield servers. Since clients have to find a valid nonce that concatenated w
+**What Each Field Means:**
+
+- **`random_nonce`**:         The SHA-256 hash of a random number (hex string)
+- **`created_time`**:         Unix milli timestamp for the challenge.
+- **`expiration_time`**:      Unix milli timestamp for the challenge expiration time.
+- **`challenge_param`**:      Target threshold - hash must be less than this value.
+- **`recommended_attempts`**: Expected number of attempts for user guidance (2x difficulty).
+- **`website_id`**:           The identifier of the website.
+- **`public_key`**:           Ed25519 public key for signature verification.
+- **`challenge_signature`**:  Ed25519 signature over the challenge data.
 
 
 ### Prerequisites
