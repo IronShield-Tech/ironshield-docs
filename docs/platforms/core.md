@@ -201,7 +201,25 @@ For example if a client has 4 available threads to solve the challenge with inde
 This algorithm mathematiclaly ensures every nonce starting from 0 will be checked but each thread doesn't have to worry about checking nonce other threads have already checked, completely elimiating massive overhead that would normally be present slowing down hashing.
 
 ### Configuration
+The `config` contains settings for how the solving process will function, like the total number of maximum attempts and the progress reporting interval of how many hashes have to occur before each call back to report the progress. The progress reporting happens through the `progress_callback` paramater that ispassed through the function, where a client can pass it as a paramater to get an update on how many iterations or hashes have elapsed.
 
+### Byte Array Operations
+All nonces numbers, and operations on them are represented as byte arrays instead of signed integers. This is done for numerous reasons, most notably a  SHA-256 hash is a 256-bit number, and there is no way to easily store 256-bit integers in Rust. Since the hashes are stored as byte arrays, every other value must also be converted to a byte array for comparisons and operations. An example of these highly-optimzied byte-array operations used in the PoW algorithm can be seen below.
+```rust
+#[inline]
+fn increment_le_bytes(bytes: &mut [u8; 8], increment: u64) {
+    let mut carry: u64 = increment;
+    for byte in bytes.iter_mut() {
+        if carry == 0 {
+            break;
+        }
+        let sum: u64 = *byte as u64 + carry;
+        *byte   = sum as u8;
+        carry   = sum >> 8;
+    }
+}
+```
+Instead of converting the checked nonce back into a signed 64-bit integer, a function like this allows us for the addition of `nonce_increment` amount directly to the byte array. Although using this approach shaves off 12-15 cpu cycles per iteration, considering this algorithm is running millions of times per second, this slight compute saving can shave off **400ms** for a challenge that needs 100 million iterations to solve it, which can appear as the difference between a snappy user-experience, and a sluggish one.
 
 
 
