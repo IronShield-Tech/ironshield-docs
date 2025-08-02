@@ -129,6 +129,12 @@ const config: Config = {
           label: 'Getting Started',
           activeBaseRegex: '^/docs/intro$',
         },
+        {
+          to: '/api',
+          position: 'left',
+          label: 'API Reference',
+          activeBaseRegex: '^/api$',
+        },
         {to: '/blog', label: 'Blog', position: 'right'},
         {
           to: '/docs/self-hosting',
@@ -152,6 +158,10 @@ const config: Config = {
             {
               label: 'Getting Started',
               to: '/docs/intro',
+            },
+            {
+              label: 'API Reference',
+              to: '/api',
             },
             {
               label: 'Self-Hosting',
