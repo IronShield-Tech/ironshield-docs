@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # Core 
 
-IronShield Core is the intelligence center of IronShield security infrastructure. It generates, verifyies, and authenticates **adaptive proof of work challenges**. It also provides advanced bot detection, behavioral analysis, and fingerprinting.
+IronShield Core is the intelligence center of IronShield security infrastructure. It generates, verifies, and authenticates **adaptive proof of work challenges**. It also provides advanced bot detection, behavioral analysis, and fingerprinting.
 
 ## Overview
 
